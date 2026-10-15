@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ROOM 05 · 食堂 | JACK'S ESCAPE ROOM</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<style>.veil{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;background:#06050e}</style>
+</head>
+<body data-base="">
+
+<div class="bg-wrap"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+<canvas id="stars"></canvas>
+<div class="grain"></div><div class="vignette"></div><div class="cursor-glow"></div>
+
+<div class="veil" id="veil"><div class="veil-inner"><div class="veil-ring"></div><div class="veil-text">LOADING</div><div class="veil-sub">ROOM 05 · CAFETERIA</div></div></div>
+
+<header class="topbar">
+  <div class="brand"><div class="mark">🔐</div><div><b>JACK'S ESCAPE ROOM</b><span>密室逃脱 · 校园版</span></div></div>
+  <div class="progress"><div class="progress-track"><div class="progress-fill" id="progressFill"></div></div><div class="progress-label" id="progressLabel">ROOM 05 / 06</div></div>
+  <div class="tools"><button class="icon-btn" id="soundBtn" title="音效开关">🔊</button><button class="icon-btn" data-nav="index.html" data-nav-label="返回首页" title="返回首页">⌂</button></div>
+</header>
+
+<main class="wrap stage">
+  <div class="room-head">
+    <div class="crumb"><a data-nav="index.html" data-nav-label="返回首页">首页</a><span class="sep">/</span><span>ROOM 05 · CAFETERIA</span></div>
+    <div class="room-title"><h2 id="roomName">食堂</h2><span class="en" id="roomEn">CAFETERIA</span></div>
+  </div>
+
+  <div class="room-grid">
+    <div class="scene">
+      <img src="assets/img/room5.jpg" alt="食堂打饭窗口">
+      <div class="scan"></div><div class="glowline"></div>
+      <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+      <div class="scene-tag" id="sceneTag">ROOM 05</div>
+      <div class="scene-cap"><div class="k">地点</div><div class="v">▲ 食堂 · 打饭窗口</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="block">
+        <div class="block-h"><span class="n">1</span>现场</div>
+        <div class="story" id="story"></div>
+      </div>
+
+      <div class="block reveal hidden" id="clueBlock">
+        <div class="block-h"><span class="n">2</span>线索</div>
+        <div class="clue" id="clueBody"></div>
+      </div>
+
+      <div class="block reveal hidden" id="puzzleBlock">
+        <div class="block-h"><span class="n">3</span><span id="puzzleLabel">餐费二维码</span></div>
+        <div class="puzzle">
+          <div class="code-row" id="codeRow"></div>
+          <div class="puzzle-actions">
+            <button class="btn primary" id="checkBtn"><span class="ic">🔓</span> 确认</button>
+            <button class="btn ghost" id="hintBtn"><span class="ic">💡</span> 提示</button>
+          </div>
+          <div class="feedback" id="feedback"></div>
+          <div class="hint-box hidden" id="hintBox"></div>
+        </div>
+      </div>
+
+      <div class="block reveal hidden" id="solvedBlock">
+        <div class="solved-banner"><div class="ok-ic">✓</div><div><b>金额正确，后厨的门开了</b><span>你顺着后厨的通道，找到一部通往天台的电梯。</span></div></div>
+      </div>
+
+      <div class="block reveal hidden" id="choiceBlock">
+        <div class="block-h"><span class="n">?</span>抉择</div>
+        <div class="choice-q" id="choiceQ"></div>
+        <div class="choice-list" id="choiceList"></div>
+        <div class="choice-note hidden" id="choiceNote"></div>
+      </div>
+
+      <div class="block reveal hidden" id="continueBlock">
+        <div class="puzzle-actions">
+          <button class="btn cyan lg" id="continueBtn"><span id="continueLabel">前往下一间</span><span class="ic">→</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="foot">JACK'S ESCAPE ROOM · ROOM 05 / 06</footer>
+</main>
+
+<script>
+window.ROOM = {
+  id: 5, name: '食堂', en: 'CAFETERIA', tag: 'ROOM 05',
+  intro: [
+    '你溜进食堂。打饭窗口已经收摊，只剩下一盏暖黄的灯，和一盘孤零零的炸鸡腿。',
+    '餐盘下压着 Jack 的餐票——[j]他说单手打饭是他的日常特训[/j]。',
+    '要拿到后厨的通道，得先在点餐机上付清他「今天忘带饭卡」的那顿饭。'
+  ],
+  clueTitle: '今天的菜单 + Jack 的餐票',
+  clueHtml: '窗口黑板上写着今日菜价：<br><br>' +
+    '🍗 炸鸡腿 —— <span class="num">12</span> 元<br>' +
+    '🍅 番茄炒蛋 —— <span class="num">6</span> 元<br>' +
+    '🥣 紫菜蛋花汤 —— <span class="num">3</span> 元<br><br>' +
+    'Jack 的餐票上写着：「<b>三样各来一份，谢谢阿姨。</b>」<br>点餐机提示：<b>输入这顿饭的总价</b>。',
+  puzzle: {
+    length: 2, answer: '21', accepts: ['21元', '21 元'], label: '点餐机金额',
+    hint: '把 12、6、3 加起来就对了。', placeholder: '两位数字'
+  },
+  choice: {
+    q: '窗口里还剩最后一份炸鸡腿，配菜牌上写着「留给我」。你要？',
+    options: [
+      { label: '留着，出去交给 Jack', bro: 1, note: '你把鸡腿打包好了。Jack 单手啃鸡腿的样子一定很好笑。（仗义值 +1）' },
+      { label: '正好饿了，自己吃掉', bro: 0, note: '鸡腿很香。就是有点对不起 Jack。（仗义值 +0）' }
+    ]
+  },
+  next: 'room6.html', nextLabel: '前往 ROOM 06 · 天台', nextEn: 'ROOM 06'
+};
+</script>
+<script src="assets/js/game.js"></script>
+</body>
+</html>

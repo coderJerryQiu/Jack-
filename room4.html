@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ROOM 04 · 体育馆 | JACK'S ESCAPE ROOM</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<style>.veil{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;background:#06050e}</style>
+</head>
+<body data-base="">
+
+<div class="bg-wrap"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+<canvas id="stars"></canvas>
+<div class="grain"></div><div class="vignette"></div><div class="cursor-glow"></div>
+
+<div class="veil" id="veil"><div class="veil-inner"><div class="veil-ring"></div><div class="veil-text">LOADING</div><div class="veil-sub">ROOM 04 · GYM</div></div></div>
+
+<header class="topbar">
+  <div class="brand"><div class="mark">🔐</div><div><b>JACK'S ESCAPE ROOM</b><span>密室逃脱 · 校园版</span></div></div>
+  <div class="progress"><div class="progress-track"><div class="progress-fill" id="progressFill"></div></div><div class="progress-label" id="progressLabel">ROOM 04 / 06</div></div>
+  <div class="tools"><button class="icon-btn" id="soundBtn" title="音效开关">🔊</button><button class="icon-btn" data-nav="index.html" data-nav-label="返回首页" title="返回首页">⌂</button></div>
+</header>
+
+<main class="wrap stage">
+  <div class="room-head">
+    <div class="crumb"><a data-nav="index.html" data-nav-label="返回首页">首页</a><span class="sep">/</span><span>ROOM 04 · GYM</span></div>
+    <div class="room-title"><h2 id="roomName">体育馆</h2><span class="en" id="roomEn">GYM</span></div>
+  </div>
+
+  <div class="room-grid">
+    <div class="scene">
+      <img src="assets/img/room4.jpg" alt="体育馆案发现场">
+      <div class="scan"></div><div class="glowline"></div>
+      <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+      <div class="scene-tag" id="sceneTag">ROOM 04</div>
+      <div class="scene-cap"><div class="k">地点</div><div class="v">▲ 体育馆 · 案发现场（单杠区）</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="block">
+        <div class="block-h"><span class="n">1</span>现场</div>
+        <div class="story" id="story"></div>
+      </div>
+
+      <div class="block reveal hidden" id="clueBlock">
+        <div class="block-h"><span class="n">2</span>线索</div>
+        <div class="clue" id="clueBody"></div>
+      </div>
+
+      <div class="block reveal hidden" id="puzzleBlock">
+        <div class="block-h"><span class="n">3</span><span id="puzzleLabel">器材室门禁</span></div>
+        <div class="puzzle">
+          <div class="code-row" id="codeRow"></div>
+          <div class="puzzle-actions">
+            <button class="btn primary" id="checkBtn"><span class="ic">🔓</span> 开锁</button>
+            <button class="btn ghost" id="hintBtn"><span class="ic">💡</span> 提示</button>
+          </div>
+          <div class="feedback" id="feedback"></div>
+          <div class="hint-box hidden" id="hintBox"></div>
+        </div>
+      </div>
+
+      <div class="block reveal hidden" id="solvedBlock">
+        <div class="solved-banner"><div class="ok-ic">✓</div><div><b>器材室的门开了</b><span>里面居然还放着 Jack 的另一只球鞋。</span></div></div>
+      </div>
+
+      <div class="block reveal hidden" id="choiceBlock">
+        <div class="block-h"><span class="n">?</span>抉择</div>
+        <div class="choice-q" id="choiceQ"></div>
+        <div class="choice-list" id="choiceList"></div>
+        <div class="choice-note hidden" id="choiceNote"></div>
+      </div>
+
+      <div class="block reveal hidden" id="continueBlock">
+        <div class="puzzle-actions">
+          <button class="btn cyan lg" id="continueBtn"><span id="continueLabel">前往下一间</span><span class="ic">→</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="foot">JACK'S ESCAPE ROOM · ROOM 04 / 06</footer>
+</main>
+
+<script>
+window.ROOM = {
+  id: 4, name: '体育馆', en: 'GYM', tag: 'ROOM 04',
+  intro: [
+    '体育馆里还拉着黄色的警戒线。一束顶光正好打在单杠上，像极了案发现场。',
+    '这里，就是 Jack 完成「人生第一次前空翻（差一点）」的地方。',
+    '你低头看了看地板——[j]满地都是他石膏的碎片[/j]，还有一颗被压扁的篮球。'
+  ],
+  clueTitle: '案发现场的清点记录',
+  clueHtml: '你蹲下来清点现场：<br><br>' +
+    '🩹 <b>石膏碎片</b>：1 块、2 块、3 块、4 块、<b>5 块</b><br>' +
+    '🏀 <b>篮球</b>：1 个（被砸得有点扁）<br>' +
+    '👟 <b>球鞋</b>：2 只（一只在单杠上挂着）<br><br>' +
+    '器材室门禁上贴着提示：「<b>先输石膏碎片数，再输篮球数</b>，两位连起来即可。」',
+  puzzle: {
+    length: 2, answer: '51', accepts: ['5 1'], label: '器材室门禁密码',
+    hint: '碎片 5 块写在前面，篮球 1 个写在后面。', placeholder: '两位数字'
+  },
+  choice: {
+    q: '单杠旁边捡到一张《意外事故登记表》，上面写着「学生 Jack 在练习前空翻时……」。你要？',
+    options: [
+      { label: '拍照存证，帮他证明当时没在瞎胡闹', bro: 1, note: '你留下了照片。Jack 的处分也许能撤销。（仗义值 +1）' },
+      { label: '撕掉，就当他从没来过', bro: 0, note: '纸张碎片飘落在地，和石膏碎片混在一起。（仗义值 +0）' }
+    ]
+  },
+  next: 'room5.html', nextLabel: '前往 ROOM 05 · 食堂', nextEn: 'ROOM 05'
+};
+</script>
+<script src="assets/js/game.js"></script>
+</body>
+</html>

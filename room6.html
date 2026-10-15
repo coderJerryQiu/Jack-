@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ROOM 06 · 天台 | JACK'S ESCAPE ROOM</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<style>.veil{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;background:#06050e}</style>
+</head>
+<body data-base="">
+
+<div class="bg-wrap"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+<canvas id="stars"></canvas>
+<div class="grain"></div><div class="vignette"></div><div class="cursor-glow"></div>
+
+<div class="veil" id="veil"><div class="veil-inner"><div class="veil-ring"></div><div class="veil-text">LOADING</div><div class="veil-sub">ROOM 06 · ROOFTOP</div></div></div>
+
+<header class="topbar">
+  <div class="brand"><div class="mark">🔐</div><div><b>JACK'S ESCAPE ROOM</b><span>密室逃脱 · 校园版</span></div></div>
+  <div class="progress"><div class="progress-track"><div class="progress-fill" id="progressFill"></div></div><div class="progress-label" id="progressLabel">ROOM 06 / 06</div></div>
+  <div class="tools"><button class="icon-btn" id="soundBtn" title="音效开关">🔊</button><button class="icon-btn" data-nav="index.html" data-nav-label="返回首页" title="返回首页">⌂</button></div>
+</header>
+
+<main class="wrap stage">
+  <div class="room-head">
+    <div class="crumb"><a data-nav="index.html" data-nav-label="返回首页">首页</a><span class="sep">/</span><span>ROOM 06 · ROOFTOP · FINALE</span></div>
+    <div class="room-title"><h2 id="roomName">天台</h2><span class="en" id="roomEn">ROOFTOP</span></div>
+  </div>
+
+  <div class="room-grid">
+    <div class="scene">
+      <img src="assets/img/room6.jpg" alt="夜晚的校园天台">
+      <div class="scan"></div><div class="glowline"></div>
+      <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+      <div class="scene-tag" id="sceneTag">ROOM 06</div>
+      <div class="scene-cap"><div class="k">地点</div><div class="v">▲ 教学楼天台 · 通风管道口</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="block">
+        <div class="block-h"><span class="n">1</span>现场</div>
+        <div class="story" id="story"></div>
+      </div>
+
+      <div class="block reveal hidden" id="clueBlock">
+        <div class="block-h"><span class="n">2</span>线索</div>
+        <div class="clue" id="clueBody"></div>
+      </div>
+
+      <div class="block reveal hidden" id="puzzleBlock">
+        <div class="block-h"><span class="n">3</span><span id="puzzleLabel">通风管密码</span></div>
+        <div class="puzzle">
+          <div class="code-row" id="codeRow"></div>
+          <div class="puzzle-actions">
+            <button class="btn primary" id="checkBtn"><span class="ic">🔓</span> 开锁</button>
+            <button class="btn ghost" id="hintBtn"><span class="ic">💡</span> 提示</button>
+          </div>
+          <div class="feedback" id="feedback"></div>
+          <div class="hint-box hidden" id="hintBox"></div>
+        </div>
+      </div>
+
+      <div class="block reveal hidden" id="solvedBlock">
+        <div class="solved-banner"><div class="ok-ic">✓</div><div><b>通风管的盖板弹开了！</b><span>外面是漫天的星和城市的灯火……但管道口有点窄。</span></div></div>
+      </div>
+
+      <div class="block reveal hidden" id="choiceBlock">
+        <div class="block-h"><span class="n">!</span>最终抉择</div>
+        <div class="choice-q" id="choiceQ"></div>
+        <div class="choice-list" id="choiceList"></div>
+        <div class="choice-note hidden" id="choiceNote"></div>
+      </div>
+
+      <div class="block reveal hidden" id="continueBlock">
+        <div class="puzzle-actions">
+          <button class="btn cyan lg" id="continueBtn"><span id="continueLabel">查看结局</span><span class="ic">→</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="foot">JACK'S ESCAPE ROOM · ROOM 06 / 06 · FINALE</footer>
+</main>
+
+<script>
+window.ROOM = {
+  id: 6, name: '天台', en: 'ROOFTOP', tag: 'ROOM 06',
+  intro: [
+    '你推开最后一道门，来到了天台。夜风很凉，头顶是漫天星子，远处是城市的灯火。',
+    '正中央立着一个巨大的通风管口，盖板上刻着一串密码。',
+    '可你刚走近，就听见管道里传来一个熟悉的声音——',
+    '[b]「别慌！是我！Jack！我把石膏卡住了！」[/b]',
+    '[j]……果然是你。[/j]'
+  ],
+  clueTitle: '石膏上的签名',
+  clueHtml: '你摸黑凑近通风管的盖板，上面刻着一行小字：<br><br>' +
+    '「密码 = <b>我石膏上一共有几个签名</b>。」<br><br>' +
+    '你想起全班一共 <span class="num">42</span> 人，Jack 挨个儿让大家在他石膏上签名留念——<b>除了他自己，一个人也没落下</b>（毕竟他也没法在自己左手石膏上写字）。',
+  puzzle: {
+    length: 2, answer: '41', accepts: ['41个'], label: '通风管盖板密码',
+    hint: '全班 42 人，减去 Jack 自己这个「没法签」的。', placeholder: '两位数字'
+  },
+  choice: {
+    q: '盖板弹开的瞬间，你看见 Jack 整个人卡在通风管里——因为他那只打满石膏的左手臂太宽了，正好卡住。他伸出右手，眼巴巴地看着你：「兄弟，拉我一把？」',
+    options: [
+      {
+        label: '双手用力，把他从管道里拽出来', bro: 1,
+        note: '你抓住了他唯一没打石膏的右手……',
+        next: function () { var b = (window.JACK.getState().bro || 0); return 'end/' + (b >= 2 ? 'good' : 'middle') + '.html'; },
+        nextLabel: '查看结局', nextEn: 'FINALE'
+      },
+      {
+        label: '自己先钻出去，回头再想办法救他', bro: 0,
+        note: '你先一步爬出了通风管，站在了夜空下。',
+        next: 'end/middle.html', nextLabel: '查看结局', nextEn: 'FINALE'
+      },
+      {
+        label: '反手把 Jack 塞回去，用石膏堵住管道（？）', bro: 0,
+        note: '你……真的这么做了？',
+        next: 'end/bad.html', nextLabel: '查看结局', nextEn: 'FINALE'
+      }
+    ]
+  }
+};
+</script>
+<script src="assets/js/game.js"></script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>结局 B · 塑料兄弟 | JACK'S ESCAPE ROOM</title>
+<link rel="stylesheet" href="../assets/css/style.css">
+<style>.veil{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;background:#06050e}</style>
+</head>
+<body data-base="../" class="end-kind-middle">
+
+<div class="bg-wrap"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+<canvas id="stars"></canvas>
+<div class="grain"></div><div class="vignette"></div><div class="cursor-glow"></div>
+
+<div class="veil" id="veil"><div class="veil-inner"><div class="veil-ring"></div><div class="veil-text">ENDING</div><div class="veil-sub">FINALE B</div></div></div>
+
+<header class="topbar">
+  <div class="brand"><div class="mark">🔐</div><div><b>JACK'S ESCAPE ROOM</b><span>结局 B · 塑料兄弟</span></div></div>
+  <div class="progress"><div class="progress-track"><div class="progress-fill" id="progressFill"></div></div><div class="progress-label" id="progressLabel">ROOM 06 / 06</div></div>
+  <div class="tools"><button class="icon-btn" id="soundBtn" title="音效开关">🔊</button><button class="icon-btn" data-nav="../index.html" data-nav-label="返回首页" title="返回首页">⌂</button></div>
+</header>
+
+<main class="wrap ending">
+  <div class="end-hero">
+    <img src="../assets/img/end_middle.jpg" alt="独自走出校门">
+    <div class="veil-grad"></div>
+    <div class="end-verdict">
+      <div class="kind">◆ 结局 B · SO-SO FRIEND</div>
+      <h2>塑料兄弟</h2>
+    </div>
+  </div>
+
+  <div class="end-body">
+    <p>你先一步爬出了通风管，站在了满天星空下，深深吸了一口气。</p>
+    <p>等你回头，Jack 已经用他那只完好的右手，一点一点地从管道里挪了出来，正坐在天台边缘吹风。他看见你，只是淡淡地说了一句：<b>「哦，你还在啊。」</b></p>
+    <p>你们一起下了楼，一路无话。第二天他换了个座位，坐到了教室的另一边。那个打满签名的石膏上，始终没有你的名字——毕竟这一路，你一次也没真正帮他。</p>
+    <p>后来 Jack 的传说还在继续，只是故事里，没有你。</p>
+  </div>
+
+  <div class="end-stats">
+    <div class="stat"><b id="statTime">—</b><span>逃脱用时（分钟）</span></div>
+    <div class="stat"><b id="statBro">0</b><span>仗义值</span></div>
+    <div class="stat"><b id="statClue">0/6</b><span>破解房间</span></div>
+  </div>
+
+  <div class="center"><span class="rank-badge">评级：<b id="rankText" style="margin-left:4px;color:var(--cyan)">B</b></span></div>
+
+  <div class="end-cta">
+    <button class="btn primary lg" id="againBtn" data-nav="../index.html" data-nav-label="重新开始"><span class="ic">↻</span> 再玩一次</button>
+    <button class="btn ghost lg" id="shareBtn"><span class="ic">📣</span> 分享成绩</button>
+  </div>
+
+  <footer class="foot">JACK'S ESCAPE ROOM · 结局 B / 3 · 下次记得对朋友好一点</footer>
+</main>
+
+<script>
+window.ENDING = {
+  kind: 'middle',
+  share: '我在《JACK 的密室逃脱》里拿到了【塑料兄弟】结局……下次一定好好对 Jack。'
+};
+</script>
+<script src="../assets/js/game.js"></script>
+</body>
+</html>

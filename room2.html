@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ROOM 02 · 化学实验室 | JACK'S ESCAPE ROOM</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<style>.veil{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;background:#06050e}</style>
+</head>
+<body data-base="">
+
+<div class="bg-wrap"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+<canvas id="stars"></canvas>
+<div class="grain"></div><div class="vignette"></div><div class="cursor-glow"></div>
+
+<div class="veil" id="veil"><div class="veil-inner"><div class="veil-ring"></div><div class="veil-text">LOADING</div><div class="veil-sub">ROOM 02 · CHEMISTRY LAB</div></div></div>
+
+<header class="topbar">
+  <div class="brand"><div class="mark">🔐</div><div><b>JACK'S ESCAPE ROOM</b><span>密室逃脱 · 校园版</span></div></div>
+  <div class="progress"><div class="progress-track"><div class="progress-fill" id="progressFill"></div></div><div class="progress-label" id="progressLabel">ROOM 02 / 06</div></div>
+  <div class="tools"><button class="icon-btn" id="soundBtn" title="音效开关">🔊</button><button class="icon-btn" data-nav="index.html" data-nav-label="返回首页" title="返回首页">⌂</button></div>
+</header>
+
+<main class="wrap stage">
+  <div class="room-head">
+    <div class="crumb"><a data-nav="index.html" data-nav-label="返回首页">首页</a><span class="sep">/</span><span>ROOM 02 · CHEMISTRY LAB</span></div>
+    <div class="room-title"><h2 id="roomName">化学实验室</h2><span class="en" id="roomEn">CHEMISTRY LAB</span></div>
+  </div>
+
+  <div class="room-grid">
+    <div class="scene">
+      <img src="assets/img/room2.jpg" alt="化学实验室">
+      <div class="scan"></div><div class="glowline"></div>
+      <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+      <div class="scene-tag" id="sceneTag">ROOM 02</div>
+      <div class="scene-cap"><div class="k">地点</div><div class="v">▲ 化学实验室 · 3 号实验台</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="block">
+        <div class="block-h"><span class="n">1</span>现场</div>
+        <div class="story" id="story"></div>
+      </div>
+
+      <div class="block reveal hidden" id="clueBlock">
+        <div class="block-h"><span class="n">2</span>线索</div>
+        <div class="clue" id="clueBody"></div>
+      </div>
+
+      <div class="block reveal hidden" id="puzzleBlock">
+        <div class="block-h"><span class="n">3</span><span id="puzzleLabel">柜门密码锁</span></div>
+        <div class="puzzle">
+          <div class="code-row" id="codeRow"></div>
+          <div class="puzzle-actions">
+            <button class="btn primary" id="checkBtn"><span class="ic">🔓</span> 开锁</button>
+            <button class="btn ghost" id="hintBtn"><span class="ic">💡</span> 提示</button>
+          </div>
+          <div class="feedback" id="feedback"></div>
+          <div class="hint-box hidden" id="hintBox"></div>
+        </div>
+      </div>
+
+      <div class="block reveal hidden" id="solvedBlock">
+        <div class="solved-banner"><div class="ok-ic">✓</div><div><b>药品柜应声弹开</b><span>一小股不明烟雾冒了出来，还好只是空气清新剂。</span></div></div>
+      </div>
+
+      <div class="block reveal hidden" id="choiceBlock">
+        <div class="block-h"><span class="n">?</span>抉择</div>
+        <div class="choice-q" id="choiceQ"></div>
+        <div class="choice-list" id="choiceList"></div>
+        <div class="choice-note hidden" id="choiceNote"></div>
+      </div>
+
+      <div class="block reveal hidden" id="continueBlock">
+        <div class="puzzle-actions">
+          <button class="btn cyan lg" id="continueBtn"><span id="continueLabel">前往下一间</span><span class="ic">→</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="foot">JACK'S ESCAPE ROOM · ROOM 02 / 06</footer>
+</main>
+
+<script>
+window.ROOM = {
+  id: 2, name: '化学实验室', en: 'CHEMISTRY LAB', tag: 'ROOM 02',
+  intro: [
+    '你摸进了化学实验室。空气里还飘着一股淡淡的、说不上来的焦味。',
+    '实验台上贴着 Jack 的名字，旁边有一张被烧出小洞的便条：「单手操作，问题不大。」',
+    '[j]问题很大。[/j]你心想。'
+  ],
+  clueTitle: '实验台上的三瓶试剂',
+  clueHtml: '实验台上整齐排着三瓶试剂，标签上各写着一个数字：<br><br>🔴 <b>红瓶</b> —— <span class="num">6</span>　　🔵 <b>蓝瓶</b> —— <span class="num">9</span>　　🟢 <b>绿瓶</b> —— <span class="num">2</span><br><br>柜门上贴着一张字条：「<b>把这三个数字从小到大连起来</b>，就是密码。」',
+  puzzle: {
+    length: 3, answer: '269', accepts: ['2 6 9'], label: '药品柜密码锁',
+    hint: '6、9、2 三个数字，从小到大排一排。', placeholder: '三位数字'
+  },
+  choice: {
+    q: '柜子里压着一份 Jack 的实验报告，老师的评语是：「单手操作，勇气可嘉，危险系数 ☆☆☆☆☆」。你要？',
+    options: [
+      { label: '拍照存证，出去帮他向老师求情', bro: 1, note: '你留了证据。至少他能少挨一顿批评。（仗义值 +1）' },
+      { label: '揉成一团扔进垃圾桶', bro: 0, note: '报告进了垃圾桶。老师会找他「聊聊」的。（仗义值 +0）' }
+    ]
+  },
+  next: 'room3.html', nextLabel: '前往 ROOM 03 · 图书馆', nextEn: 'ROOM 03'
+};
+</script>
+<script src="assets/js/game.js"></script>
+</body>
+</html>

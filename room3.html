@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ROOM 03 · 图书馆 | JACK'S ESCAPE ROOM</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<style>.veil{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;background:#06050e}</style>
+</head>
+<body data-base="">
+
+<div class="bg-wrap"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+<canvas id="stars"></canvas>
+<div class="grain"></div><div class="vignette"></div><div class="cursor-glow"></div>
+
+<div class="veil" id="veil"><div class="veil-inner"><div class="veil-ring"></div><div class="veil-text">LOADING</div><div class="veil-sub">ROOM 03 · LIBRARY</div></div></div>
+
+<header class="topbar">
+  <div class="brand"><div class="mark">🔐</div><div><b>JACK'S ESCAPE ROOM</b><span>密室逃脱 · 校园版</span></div></div>
+  <div class="progress"><div class="progress-track"><div class="progress-fill" id="progressFill"></div></div><div class="progress-label" id="progressLabel">ROOM 03 / 06</div></div>
+  <div class="tools"><button class="icon-btn" id="soundBtn" title="音效开关">🔊</button><button class="icon-btn" data-nav="index.html" data-nav-label="返回首页" title="返回首页">⌂</button></div>
+</header>
+
+<main class="wrap stage">
+  <div class="room-head">
+    <div class="crumb"><a data-nav="index.html" data-nav-label="返回首页">首页</a><span class="sep">/</span><span>ROOM 03 · LIBRARY</span></div>
+    <div class="room-title"><h2 id="roomName">图书馆</h2><span class="en" id="roomEn">LIBRARY</span></div>
+  </div>
+
+  <div class="room-grid">
+    <div class="scene">
+      <img src="assets/img/room3.jpg" alt="图书馆">
+      <div class="scan"></div><div class="glowline"></div>
+      <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+      <div class="scene-tag" id="sceneTag">ROOM 03</div>
+      <div class="scene-cap"><div class="k">地点</div><div class="v">▲ 图书馆 · 靠窗那排书架</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="block">
+        <div class="block-h"><span class="n">1</span>现场</div>
+        <div class="story" id="story"></div>
+      </div>
+
+      <div class="block reveal hidden" id="clueBlock">
+        <div class="block-h"><span class="n">2</span>线索</div>
+        <div class="clue" id="clueBody"></div>
+      </div>
+
+      <div class="block reveal hidden" id="puzzleBlock">
+        <div class="block-h"><span class="n">3</span><span id="puzzleLabel">书架暗格密码</span></div>
+        <div class="puzzle">
+          <div class="code-row" id="codeRow"></div>
+          <div class="puzzle-actions">
+            <button class="btn primary" id="checkBtn"><span class="ic">🔓</span> 开锁</button>
+            <button class="btn ghost" id="hintBtn"><span class="ic">💡</span> 提示</button>
+          </div>
+          <div class="feedback" id="feedback"></div>
+          <div class="hint-box hidden" id="hintBox"></div>
+        </div>
+      </div>
+
+      <div class="block reveal hidden" id="solvedBlock">
+        <div class="solved-banner"><div class="ok-ic">✓</div><div><b>书架裂开一道暗格</b><span>里面塞着一张去天台的门禁卡。</span></div></div>
+      </div>
+
+      <div class="block reveal hidden" id="choiceBlock">
+        <div class="block-h"><span class="n">?</span>抉择</div>
+        <div class="choice-q" id="choiceQ"></div>
+        <div class="choice-list" id="choiceList"></div>
+        <div class="choice-note hidden" id="choiceNote"></div>
+      </div>
+
+      <div class="block reveal hidden" id="continueBlock">
+        <div class="puzzle-actions">
+          <button class="btn cyan lg" id="continueBtn"><span id="continueLabel">前往下一间</span><span class="ic">→</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="foot">JACK'S ESCAPE ROOM · ROOM 03 / 06</footer>
+</main>
+
+<script>
+window.ROOM = {
+  id: 3, name: '图书馆', en: 'LIBRARY', tag: 'ROOM 03',
+  intro: [
+    '图书馆里静得能听见自己的呼吸。靠窗那排书架上，夹着一条窄缝，透出幽幽的光。',
+    '书架前台摊着一本借阅登记簿，最后一页还留着 Jack 的名字。',
+    '他借的书……[j]一本比一本离谱[/j]。'
+  ],
+  clueTitle: '借阅登记簿 + 书架标签',
+  clueHtml: '书架上只留下了四本书，编号和书名如下：<br><br>' +
+    '📕 <span class="num">007</span> 《单杠安全手册》<br>' +
+    '📗 <span class="num">013</span> 《左手生活的一百种方式》<br>' +
+    '📘 <span class="num">021</span> 《如何让石膏看起来更酷》<br>' +
+    '📙 <span class="num">045</span> 《我如何用一只手考上清华》<br><br>' +
+    '压着的纸条写着：「Jack 借过其中三本。<b>只有一本他从没翻开过</b>——因为那本书讲的是……<b>安全</b>。输入那本的编号。」',
+  puzzle: {
+    length: 3, answer: '007', accepts: ['7'], label: '书架暗格密码',
+    hint: '哪本书是 Jack 绝对不会碰的？那本教人「注意安全」的。', placeholder: '三位数字'
+  },
+  next: 'room4.html', nextLabel: '前往 ROOM 04 · 体育馆', nextEn: 'ROOM 04'
+};
+</script>
+<script src="assets/js/game.js"></script>
+</body>
+</html>

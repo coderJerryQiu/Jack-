@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JACK'S ESCAPE ROOM · 密室逃脱</title>
+<meta name="description" content="一个关于同学 Jack 的校园密室逃脱小游戏。">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>.veil{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;background:#06050e}</style>
+</head>
+<body data-base="">
+
+<div class="bg-wrap"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+<canvas id="stars"></canvas>
+<div class="grain"></div>
+<div class="vignette"></div>
+<div class="cursor-glow"></div>
+
+<div class="veil" id="veil">
+  <div class="veil-inner">
+    <div class="veil-ring"></div>
+    <div class="veil-text">LOADING</div>
+    <div class="veil-sub">JACK'S ESCAPE ROOM</div>
+  </div>
+</div>
+
+<header class="topbar">
+  <div class="brand">
+    <div class="mark">🔐</div>
+    <div><b>JACK'S ESCAPE ROOM</b><span>密室逃脱 · 校园版</span></div>
+  </div>
+  <div class="progress">
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-label" id="progressLabel">ROOM 00 / 06</div>
+  </div>
+  <div class="tools">
+    <button class="icon-btn" id="soundBtn" title="音效开关">🔊</button>
+    <button class="icon-btn" id="resetBtn" title="清空进度">↺</button>
+  </div>
+</header>
+
+<main class="wrap stage">
+  <section class="hero">
+    <div class="hero-copy">
+      <span class="chip"><span class="dot"></span>校园密室逃脱 · 6 房间 · 3 结局</span>
+      <h1 class="title"><span class="grad">JACK</span><span class="stroke">ESCAPE ROOM</span></h1>
+      <p class="lede">
+        你的同学 <b>Jack</b>，男生，热爱运动，<b>左手刚刚骨折</b>，打着石膏还要单手征服世界。<br>
+        今天他把自己锁进了教学楼，还把钥匙吞了——他说本来想用石膏把门砸开，<span class="roast">结果砸歪了，砸到自己脚上</span>。<br>
+        现在轮到你一间间破解他留下的烂摊子，把他捞出来。
+      </p>
+      <div class="hero-cta">
+        <button class="btn primary lg" id="startBtn" data-nav="room1.html" data-nav-label="ROOM 01">
+          <span class="ic">▶</span> 开始逃脱
+        </button>
+        <button class="btn ghost lg hidden" id="continueBtn" data-nav="room1.html" data-nav-label="继续">
+          <span class="ic">↻</span> 继续上次
+        </button>
+      </div>
+      <div class="hero-meta">
+        <div class="m"><b>06</b><span>房间</span></div>
+        <div class="m"><b>03</b><span>结局</span></div>
+        <div class="m"><b>01</b><span>只断手</span></div>
+        <div class="m"><b id="continueInfo" style="font-size:12px;font-weight:600;color:var(--ink-soft)"></b></div>
+      </div>
+    </div>
+
+    <div class="hero-art">
+      <div class="frame">
+        <img src="assets/img/hero.jpg" alt="Jack 举着打石膏的左手">
+        <div class="tag">主角 · JACK · 左手已就位</div>
+      </div>
+      <div class="float-badge a">左手：石膏已就位 🩹</div>
+      <div class="float-badge b">右手：勉强能比耶 ✌</div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    一个给同学 Jack 的恶搞小游戏 · 用 <span class="heart">♥</span> 和一点点的塑料兄弟情制作<br>
+    <span style="opacity:.7">提示：关掉键盘音、戴上耳机，体验更佳。</span>
+  </footer>
+</main>
+
+<script src="assets/js/game.js"></script>
+</body>
+</html>

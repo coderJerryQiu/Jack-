@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>结局 C · 校园传说 | JACK'S ESCAPE ROOM</title>
+<link rel="stylesheet" href="../assets/css/style.css">
+<style>.veil{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;background:#06050e}</style>
+</head>
+<body data-base="../" class="end-kind-bad">
+
+<div class="bg-wrap"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+<canvas id="stars"></canvas>
+<div class="grain"></div><div class="vignette"></div><div class="cursor-glow"></div>
+
+<div class="veil" id="veil"><div class="veil-inner"><div class="veil-ring"></div><div class="veil-text">BAD ENDING</div><div class="veil-sub">FINALE C</div></div></div>
+
+<header class="topbar">
+  <div class="brand"><div class="mark">🔐</div><div><b>JACK'S ESCAPE ROOM</b><span>结局 C · 塑料友谊の巅峰</span></div></div>
+  <div class="progress"><div class="progress-track"><div class="progress-fill" id="progressFill"></div></div><div class="progress-label" id="progressLabel">ROOM 06 / 06</div></div>
+  <div class="tools"><button class="icon-btn" id="soundBtn" title="音效开关">🔊</button><button class="icon-btn" data-nav="../index.html" data-nav-label="返回首页" title="返回首页">⌂</button></div>
+</header>
+
+<main class="wrap ending">
+  <div class="end-hero">
+    <img src="../assets/img/end_bad.jpg" alt="Jack 掉在气垫上">
+    <div class="veil-grad"></div>
+    <div class="end-verdict">
+      <div class="kind">✖ 结局 C · BAD · 恶搞</div>
+      <h2>用石膏堵住管道的男人</h2>
+    </div>
+  </div>
+
+  <div class="end-body">
+    <p>你……真的把 Jack 塞了回去。</p>
+    <p>打满石膏的左手精准地卡住了通风管，整栋教学楼的通风系统瞬间报警。Jack 在里面大喊：「这算什么兄弟？！」——然后被报警的老师们连人带石膏一起掏了出来。</p>
+    <p>结果出乎所有人意料：<b>Jack 因为石膏缓冲，毫发无伤</b>，还当场成了校园传说——「那个被同学当塞子的男人」。你被记了个小小的过，而他第二天……换了右手骨折。</p>
+    <p>据说是打你打的。石膏很硬。</p>
+  </div>
+
+  <div class="end-stats">
+    <div class="stat"><b id="statTime">—</b><span>逃脱用时（分钟）</span></div>
+    <div class="stat"><b id="statBro">0</b><span>仗义值</span></div>
+    <div class="stat"><b id="statClue">0/6</b><span>破解房间</span></div>
+  </div>
+
+  <div class="center"><span class="rank-badge">评级：<b id="rankText" style="margin-left:4px;color:var(--red)">F</b></span></div>
+
+  <div class="end-cta">
+    <button class="btn primary lg" id="againBtn" data-nav="../index.html" data-nav-label="重新开始"><span class="ic">↻</span> 再玩一次</button>
+    <button class="btn ghost lg" id="shareBtn"><span class="ic">📣</span> 分享成绩</button>
+  </div>
+
+  <footer class="foot">JACK'S ESCAPE ROOM · 结局 C / 3 · 这大概不是 Jack 想要的结局</footer>
+</main>
+
+<script>
+window.ENDING = {
+  kind: 'bad',
+  share: '我在《JACK 的密室逃脱》里拿到了【用石膏堵住管道的男人】结局……Jack 对不起。'
+};
+</script>
+<script src="../assets/js/game.js"></script>
+</body>
+</html>

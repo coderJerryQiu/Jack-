@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>结局 A · 生死之交 | JACK'S ESCAPE ROOM</title>
+<link rel="stylesheet" href="../assets/css/style.css">
+<style>.veil{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;background:#06050e}</style>
+</head>
+<body data-base="../" class="end-kind-good">
+
+<div class="bg-wrap"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+<canvas id="stars"></canvas>
+<div class="grain"></div><div class="vignette"></div><div class="cursor-glow"></div>
+
+<div class="veil" id="veil"><div class="veil-inner"><div class="veil-ring"></div><div class="veil-text">GOOD ENDING</div><div class="veil-sub">FINALE A</div></div></div>
+
+<header class="topbar">
+  <div class="brand"><div class="mark">🔐</div><div><b>JACK'S ESCAPE ROOM</b><span>结局 A · 生死之交</span></div></div>
+  <div class="progress"><div class="progress-track"><div class="progress-fill" id="progressFill"></div></div><div class="progress-label" id="progressLabel">ROOM 06 / 06</div></div>
+  <div class="tools"><button class="icon-btn" id="soundBtn" title="音效开关">🔊</button><button class="icon-btn" data-nav="../index.html" data-nav-label="返回首页" title="返回首页">⌂</button></div>
+</header>
+
+<main class="wrap ending">
+  <div class="end-hero">
+    <img src="../assets/img/end_good.jpg" alt="两个人冲出校门">
+    <div class="veil-grad"></div>
+    <div class="end-verdict">
+      <div class="kind">★ 结局 A · TRUE FRIEND</div>
+      <h2>生死之交</h2>
+    </div>
+  </div>
+
+  <div class="end-body">
+    <p>你双手抓住了 Jack 唯一没打石膏的右手，用尽全力一拽——<b>「啵」</b>的一声，他连人带石膏从管道里滑了出来，两个人一起滚在天台上哈哈大笑。</p>
+    <p>天快亮的时候，你们并肩走出校门。Jack 低头看了看自己的石膏，认真地说：「兄弟，就差你一个签名了。」你接过马克笔，在他左手最后一点空白处写下自己的名字。</p>
+    <p>从此，Jack「左手骨折还能单手翻出教学楼」的传说传遍了全校——而他那个打满签名的石膏，成了整个学期最抢手的合影道具。</p>
+  </div>
+
+  <div class="end-stats">
+    <div class="stat"><b id="statTime">—</b><span>逃脱用时（分钟）</span></div>
+    <div class="stat"><b id="statBro">0</b><span>仗义值</span></div>
+    <div class="stat"><b id="statClue">0/6</b><span>破解房间</span></div>
+  </div>
+
+  <div class="center"><span class="rank-badge">🏆 评级：<b id="rankText" style="margin-left:4px;color:var(--amber)">S</b></span></div>
+
+  <div class="end-cta">
+    <button class="btn primary lg" id="againBtn" data-nav="../index.html" data-nav-label="重新开始"><span class="ic">↻</span> 再玩一次</button>
+    <button class="btn ghost lg" id="shareBtn"><span class="ic">📣</span> 分享成绩</button>
+  </div>
+
+  <footer class="foot">JACK'S ESCAPE ROOM · 结局 A / 3 · 感谢你毫不塑料的兄弟情 <span class="heart">♥</span></footer>
+</main>
+
+<script>
+window.ENDING = {
+  kind: 'good',
+  share: '我在《JACK 的密室逃脱》里拿到【生死之交】结局！Jack 的石膏上现在有我的签名。'
+};
+</script>
+<script src="../assets/js/game.js"></script>
+</body>
+</html>
